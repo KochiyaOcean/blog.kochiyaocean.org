@@ -95,7 +95,7 @@ Github 地址在 这里
 Main Proces">
 <meta property="og:type" content="article">
 <meta property="og:title" content="简单港一下poi的结构">
-<meta property="og:url" content="https://blog.kochiyaocean.org/2017/03/10/简单港一下poi的结构/index.html">
+<meta property="og:url" content="https://blog.kochiyaocean.org/2017/03/10/poi-structure/index.html">
 <meta property="og:site_name" content="東風谷オーシャンの神社">
 <meta property="og:description" content="第一篇文章果然还是要从前代博客停止维护的直接原因（？）poi 讲起啊。
 因为水平不够不确定能否讲得清楚……希望不会成为新的黑历史好了。
@@ -103,7 +103,7 @@ Main Proces">
 Github 地址在 这里 
 结构概览Electron 的进程分为两种进程：Main Process 和 Render Process。
 Main Proces">
-<meta property="og:image" content="https://blog.kochiyaocean.org/2017/03/10/简单港一下poi的结构/1.png">
+<meta property="og:image" content="https://blog.kochiyaocean.org/2017/03/10/poi-structure/1.png">
 <meta property="og:updated_time" content="2017-03-10T06:06:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简单港一下poi的结构">
@@ -113,7 +113,7 @@ Main Proces">
 Github 地址在 这里 
 结构概览Electron 的进程分为两种进程：Main Process 和 Render Process。
 Main Proces">
-<meta name="twitter:image" content="https://blog.kochiyaocean.org/2017/03/10/简单港一下poi的结构/1.png">
+<meta name="twitter:image" content="https://blog.kochiyaocean.org/2017/03/10/poi-structure/1.png">
 
 
 
@@ -141,7 +141,7 @@ Main Proces">
 
 
 
-  <link rel="canonical" href="https://blog.kochiyaocean.org/2017/03/10/简单港一下poi的结构/"/>
+  <link rel="canonical" href="https://blog.kochiyaocean.org/2017/03/10/poi-structure/"/>
 
 
 
@@ -333,7 +333,7 @@ Main Proces">
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://blog.kochiyaocean.org/2017/03/10/简单港一下poi的结构/">
+    <link itemprop="mainEntityOfPage" href="https://blog.kochiyaocean.org/2017/03/10/poi-structure/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="東風谷オーシャン">
@@ -441,7 +441,7 @@ Main Proces">
 <p>对于数据的处理，由于使用的是 React 全家桶，故直接将其作为一个 Action dispatch 出去，由 store 变动影响渲染</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; onGameRequest, onGameResponse &#125; <span class="keyword">from</span> <span class="string">'views/redux'</span></div><div class="line"></div><div class="line"><span class="comment">// Get proxy using remote module</span></div><div class="line"><span class="keyword">const</span> proxy = remote.require(<span class="string">'./lib/proxy'</span>)</div><div class="line"></div><div class="line"><span class="keyword">const</span> parseResponses = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  ...</div><div class="line">  const details = &#123;</div><div class="line">    <span class="attr">method</span>: method,</div><div class="line">    <span class="attr">path</span>: path,</div><div class="line">    <span class="attr">body</span>: body,</div><div class="line">    <span class="attr">postBody</span>: postBody,</div><div class="line">    <span class="attr">time</span>: time,</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// Update redux store</span></div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    dispatch(onGameResponse(details))</div><div class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">    <span class="built_in">console</span>.error(domain, url, e.stack)</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// Send a event for non-redux plugins</span></div><div class="line">  <span class="keyword">const</span> event = <span class="keyword">new</span> CustomEvent(<span class="string">'game.response'</span>, &#123;</div><div class="line">    <span class="attr">bubbles</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">cancelable</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">detail</span>: details,</div><div class="line">  &#125;)</div><div class="line">  <span class="built_in">window</span>.dispatchEvent(event)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Add eventListener to remote proxy module</span></div><div class="line"><span class="keyword">const</span> proxyListener = &#123;</div><div class="line">  <span class="string">'network.on.request'</span>: handleProxyGameOnRequest,</div><div class="line">  <span class="string">'network.on.response'</span>: handleProxyGameOnResponse,</div><div class="line">  <span class="string">'network.error'</span>: handleProxyNetworkError,</div><div class="line">  <span class="string">'network.error.retry'</span>: handleProxyNetworkErrorRetry,</div><div class="line">  <span class="string">'network.get.server'</span>: handleGetServer,</div><div class="line">&#125;</div><div class="line"><span class="built_in">window</span>.listenerStatusFlag = <span class="literal">false</span></div><div class="line"><span class="keyword">const</span> addProxyListener = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (!<span class="built_in">window</span>.listenerStatusFlag) &#123;</div><div class="line">    <span class="built_in">window</span>.listenerStatusFlag = <span class="literal">true</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> eventName <span class="keyword">in</span> proxyListener) &#123;</div><div class="line">      proxy.addListener(eventName, proxyListener[eventName])</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">addProxyListener()</div><div class="line"><span class="built_in">window</span>.addEventListener (<span class="string">'load'</span>, () =&gt; &#123;</div><div class="line">  addProxyListener()</div><div class="line">&#125;)</div><div class="line"><span class="built_in">window</span>.addEventListener (<span class="string">'unload'</span>, () =&gt; &#123;</div><div class="line">  <span class="keyword">if</span> (<span class="built_in">window</span>.listenerStatusFlag)&#123;</div><div class="line">    <span class="built_in">window</span>.listenerStatusFlag = <span class="literal">false</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> eventName <span class="keyword">in</span> proxyListener) &#123;</div><div class="line">      proxy.removeListener(eventName, proxyListener[eventName])</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>大体上 poi 的结构是这样的</p>
-<img src="/2017/03/10/简单港一下poi的结构/1.png" alt="poi 结构图" title="poi 结构图">
+<img src="/2017/03/10/poi-structure/1.png" alt="poi 结构图" title="poi 结构图">
 <h3 id="其他的一些东西"><a href="#其他的一些东西" class="headerlink" title="其他的一些东西"></a>其他的一些东西</h3><h4 id="插件系统"><a href="#插件系统" class="headerlink" title="插件系统"></a>插件系统</h4><p>poi 开发组最不愿意碰的代码第一位。</p>
 <p>插件系统受 <a href="https://github.com/atom/apm" target="_blank" rel="external">APM</a> 启发，插件的本质是一个 node module。插件分为两种：主窗口和新窗口插件，前者在 poi 主界面加载，需要 export 一个 react class 作为界面，以及可以选择 export 一个 reducer 以参与对 store 的修改。</p>
 <p>Store 加载时预留给插件的 reducer 接口</p>
@@ -507,7 +507,7 @@ Main Proces">
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/11/同人音声翻译-二人きりの駅で/" rel="prev" title="[同人音声翻译] 二人きりの駅で">
+              <a href="/2017/03/11/futarikiri-no-eki-de/" rel="prev" title="[同人音声翻译] 二人きりの駅で">
                 [同人音声翻译] 二人きりの駅で <i class="fa fa-chevron-right"></i>
               </a>
             
