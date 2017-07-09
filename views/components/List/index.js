@@ -1,19 +1,15 @@
 import React, { Component } from 'react'
-import classNames from 'classnames'
-// import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import FontAwesome from 'react-fontawesome'
 import MasonryLayout from 'react-masonry-component'
 import { push } from 'react-router-redux'
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card'
+import { Card, CardTitle, CardText } from 'react-toolbox/lib/card'
 import Ripple from 'react-toolbox/lib/ripple'
 import Avatar from 'react-toolbox/lib/avatar'
 import Chip from 'react-toolbox/lib/chip'
-import { Button } from 'react-toolbox/lib/button'
 import { getBlogList } from '../../store/action'
 
 import styles from './styles.css'
-import theme from 'react-toolbox/lib/ripple/theme.css'
 
 const ARTICLES_PER_PAGE = 10
 
