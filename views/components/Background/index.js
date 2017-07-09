@@ -1,12 +1,14 @@
 import React from 'react'
 import '../../3rd/fss'
-import mesh from '../../3rd/mesh'
+import { startFSS, enableLoop, disableLoop } from '../../3rd/mesh'
 
 import styles from './styles.css'
 
 class Background extends React.Component {
   componentDidMount() {
-    mesh(this.ground)
+    startFSS(this.ground)
+    window.enableLoop = enableLoop
+    window.disableLoop = disableLoop
   }
 
   render() {
