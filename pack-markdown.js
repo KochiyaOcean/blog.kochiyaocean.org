@@ -9,6 +9,8 @@ const metaList = lists.map(p => {
 
   const fileName = path.basename(p)
   const urlName = fileName.slice(0, fileName.length - 3)
+  // eslint-disable-next-line no-console
+  console.log(fileName)
 
   const date = new Date(cnt.meta.date)
   const year = '' + date.getUTCFullYear()
@@ -22,8 +24,11 @@ const metaList = lists.map(p => {
     const staticPath = p.slice(0, p.length - 3)
     fs.accessSync(staticPath)
     fs.copySync(staticPath, path.join(__dirname, 'public', year, month, day, urlName))
+    // eslint-disable-next-line no-console
+    console.log('\tStatic files copied')
   } catch (e) {
-    console.log('No static files')
+    // eslint-disable-next-line no-console
+    console.log('\tNo static files')
   }
 
   const ret = Object.assign(cnt.meta, {
@@ -33,6 +38,8 @@ const metaList = lists.map(p => {
   })
   fs.ensureDirSync(path.join(__dirname, 'public', year, month, day))
   fs.writeJSONSync(path.join(__dirname, 'public', year, month, day, `${urlName}.json`), ret)
+  // eslint-disable-next-line no-console
+  console.log('\tBlog data written')
 
   delete ret.markdown
   return ret
@@ -74,3 +81,5 @@ Object.keys(categories).forEach(cat => {
 })
 
 fs.writeJSONSync(path.join(__dirname, 'public', 'meta.json'), { metaList, tags, categories })
+// eslint-disable-next-line no-console
+console.log('Metadata written!')
