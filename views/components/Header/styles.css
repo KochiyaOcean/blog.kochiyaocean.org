@@ -1,0 +1,14 @@
+.header {
+  padding: 0.5em;
+  min-height: 2em;
+  position: absolute;
+  flex: 0;
+  overflow: scroll;
+  white-space: nowrap;
+  z-index: 1000;
+  width: calc(100% - 1em);
+}
+
+.menubtn {
+  font-size: 20px;
+}
