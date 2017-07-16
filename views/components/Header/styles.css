@@ -3,12 +3,144 @@
   min-height: 2em;
   position: absolute;
   flex: 0;
-  overflow: scroll;
+  overflow: hidden;
   white-space: nowrap;
-  z-index: 1000;
+  z-index: 10;
   width: calc(100% - 1em);
 }
 
 .menubtn {
   font-size: 20px;
+}
+
+.drawer {
+  z-index: 100;
+}
+
+.drawerheader {
+  height: 158px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.drawermenu {
+  padding-top: 8px;
+  height: calc(100vh - 206px);
+  overflow: auto;
+}
+
+.avatarcontainer {
+  padding-top: 24px;
+}
+
+.avatar {
+  height: 54px;
+  width: 54px;
+  margin: 16px;
+}
+
+.name {
+  color: #F0F0F0;
+  background-color: transparent;
+  position: relative;
+  display: block;
+  height: 48px;
+  line-height: 48px;
+  padding: 0;
+  padding-left: 16px;
+  padding-right: 56px;
+  text-decoration: none;
+  clear: both;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: .2s;
+}
+
+.name.active,
+.name:hover,
+.name:focus {
+  background-color: rgba(0, 0, 0, 0.10);
+}
+
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 4px solid;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+  transition: transform .2s;
+}
+
+.caret {
+  position: absolute;
+  right: 24px;
+  top: 24px;
+}
+
+.active .caret {
+  transform: rotate(180deg);
+}
+
+.drawermenuitem {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  display: block;
+  height: 48px;
+  line-height: 48px;
+  padding: 0;
+  padding-left: 16px;
+  padding-right: 56px;
+  text-decoration: none;
+  clear: both;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.drawersubmenuitem {
+  background-color: #e0e0e0;
+}
+
+.drawermenuitem:hover {
+  background-color: #cecece;
+}
+
+.drawermenuitem .icon {
+  display: inline-block;
+  margin-right: 16px;
+  min-width: 40px;
+  width: 40px;
+  text-align: left;
+  font-size: 20px;
+}
+
+.divider {
+  background-color: #bdbdbd;
+  margin: 8px 0;
+  height: 1px;
+}
+
+.badge {
+  display: inline-block;
+  min-width: 24px;
+  height: 24px;
+  line-height: 24px;
+  padding: 0 3px;
+  font-size: 10px;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  color: #fff;
+  background-color: #bdbdbd;
+  position: absolute;
+  right: 16px;
+  top: 12px;
 }

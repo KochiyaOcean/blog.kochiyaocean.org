@@ -1,7 +1,8 @@
 const initState = {
   metaList: [],
-  tags: {},
-  categories: {},
+  tags: [],
+  categories: [],
+  archives: [],
   blog: {},
   loading: true,
 }
