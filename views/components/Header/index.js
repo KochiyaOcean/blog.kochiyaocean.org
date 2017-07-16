@@ -5,9 +5,12 @@ import { IconButton } from 'react-toolbox/lib/button'
 import Drawer from 'react-toolbox/lib/drawer'
 import Avatar from 'react-toolbox/lib/avatar'
 import Ripple from 'react-toolbox/lib/ripple'
+import Switch from 'react-toolbox/lib/switch'
 import { Collapse } from 'react-collapse'
 import FontAwesome from 'react-fontawesome'
 import classnames from 'classnames'
+
+import { enableLoop, disableLoop } from '../../3rd/mesh'
 
 import styles from './styles.css'
 
@@ -32,7 +35,7 @@ const mapStateToProps = (state, props) => {
 @connect(mapStateToProps)
 class Header extends Component {
   state = {
-    background: true,
+    background: localStorage.getItem('blog.kochiyaocean.org') !== 'false',
     drawer: false,
     links: false,
     tags: false,
@@ -41,6 +44,16 @@ class Header extends Component {
   }
 
   handleToggle = target => e => {
+    e.stopPropagation()
+    if (target === 'background') {
+      if (this.state.background) {
+        disableLoop()
+        localStorage.setItem('blog.kochiyaocean.org', 'false')
+      } else {
+        enableLoop()
+        localStorage.setItem('blog.kochiyaocean.org', 'true')
+      }
+    }
     this.setState({
       [target]: !this.state[target],
     })
@@ -158,6 +171,15 @@ class Header extends Component {
               }
             </Collapse>
           </div>
+          <RippleMenuItem onClick={this.handleToggle('background')}
+            className={classnames(styles.drawermenuitem)}>
+            背景动画
+            <span className={styles.switch}>
+              <Switch
+                checked={this.state.background}
+              />
+            </span>
+          </RippleMenuItem>
         </Drawer>
       </div>
     )

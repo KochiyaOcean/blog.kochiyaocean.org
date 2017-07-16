@@ -144,3 +144,15 @@
   right: 16px;
   top: 12px;
 }
+
+.switch {
+  display: inline-block;
+  min-width: 24px;
+  height: 24px;
+  line-height: 24px;
+  padding: 0 3px;
+  position: absolute;
+  right: 16px;
+  top: 12px;
+  pointer-events: none;
+}

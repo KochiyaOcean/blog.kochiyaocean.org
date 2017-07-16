@@ -1,14 +1,15 @@
 import React from 'react'
 import '../../3rd/fss'
-import { startFSS, enableLoop, disableLoop } from '../../3rd/mesh'
+import { startFSS, disableLoop } from '../../3rd/mesh'
 
 import styles from './styles.css'
 
 class Background extends React.Component {
   componentDidMount() {
+    if (localStorage.getItem('blog.kochiyaocean.org') === 'false') {
+      disableLoop()
+    }
     startFSS(this.ground)
-    window.enableLoop = enableLoop
-    window.disableLoop = disableLoop
   }
 
   render() {

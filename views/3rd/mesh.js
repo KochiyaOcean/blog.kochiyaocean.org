@@ -60,7 +60,8 @@ const RENDER = {
 //------------------------------
 let now
 
-const start = Date.now()
+let start = Date.now()
+let stop = Date.now()
 const center = FSS.Vector3.create()
 const attractor = FSS.Vector3.create()
 let renderer
@@ -294,6 +295,7 @@ export function startFSS (_container) {
 }
 
 export function enableLoop () {
+  start += Date.now() - stop
   if (stopSig) {
     stopSig = false
     animate()
@@ -301,5 +303,8 @@ export function enableLoop () {
 }
 
 export function disableLoop () {
-  stopSig = true
+  if (!stopSig) {
+    stop = Date.now()
+    stopSig = true
+  }
 }
