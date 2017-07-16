@@ -52,34 +52,45 @@ metaList.forEach(item => {
 
 metaList.sort((a, b) => (new Date(articleMap.get(b.name).date)).getTime() - (new Date(articleMap.get(a.name).date)).getTime())
 
-const tags = {}
+const tags = []
 metaList.forEach(item => {
   if (Array.isArray(item.tags)) {
     item.tags.forEach(tag => {
-      tags[tag] = [
-        ...tags[tag] || [],
-        item.name,
-      ]
+      if (!tags.find(i => i.tag === tag)) {
+        tags.push({ tag, count: 1 })
+      } else {
+        tags.find(i => i.tag === tag).count++
+      }
     })
   }
 })
-Object.keys(tags).forEach(tag => {
-  tags[tag].sort((a, b) => (new Date(articleMap.get(b).date)).getTime() - (new Date(articleMap.get(a).date)).getTime())
-})
+tags.sort((a, b) => a.tag > b.tag ? 1 : -1)
 
-const categories = {}
+const categories = []
 metaList.forEach(item => {
   if (typeof(item.categories) === 'string') {
-    categories[item.categories] = [
-      ...categories[item.categories] || [],
-      item.name,
-    ]
+    if (!categories.find(i => i.categories === categories)) {
+      categories.push({ categories:item.categories, count: 1 })
+    } else {
+      categories.find(i => i.categories === categories).count++
+    }
   }
 })
-Object.keys(categories).forEach(cat => {
-  categories[cat].sort((a, b) => (new Date(articleMap.get(b).date)).getTime() - (new Date(articleMap.get(a).date)).getTime())
-})
+categories.sort((a, b) => a.categories > b.categories ? 1 : -1)
 
-fs.writeJSONSync(path.join(__dirname, 'public', 'meta.json'), { metaList, tags, categories })
+const archives = []
+metaList.forEach(item => {
+  if (typeof(item.url) === 'string') {
+    const ts = item.url.slice(0, 7)
+    if (!archives.find(i => i.ts === ts)) {
+      archives.push({ ts, count: 1 })
+    } else {
+      archives.find(i => i.ts === ts).count++
+    }
+  }
+})
+archives.sort((a, b) => a.ts < b.ts ? 1 : -1)
+
+fs.writeJSONSync(path.join(__dirname, 'public', 'meta.json'), { metaList, tags, categories, archives })
 // eslint-disable-next-line no-console
 console.log('Metadata written!')
